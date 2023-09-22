@@ -1,37 +1,19 @@
-import { useState, useEffect } from 'react'
 import './App.css'
-import { NewPlayerForm } from "./components/NewPlayerForm.jsx";
+// import { NewPlayerForm } from "./components/NewPlayerForm.jsx";
+// import { PlayersList } from './components/PlayersList.jsx';
+// import {useSelector} from "react-redux";
+import { Welcome } from "./components/Welcome.jsx";
+import { GameMode } from "./components/GameMode.jsx";
+import {Routes, Route, Link, NavLink, useLocation} from 'react-router-dom';
 
 function App() {
-    const [players, setPlayers] = useState(()=> {
-        const localValue = localStorage.getItem("PLAYERS");
-        if(localValue === null) return [];
-        return JSON.parse(localValue);
-    });
-
-    useEffect(()=> {
-        localStorage.setItem("ITEMS", JSON.stringify(players));
-    }, [players])
-
-    function addPlayer(name) {
-        setPlayers( currentTodos => {
-            return [
-                ...currentTodos,
-                {
-                    id: crypto.randomUUID(),
-                    name,
-                    frameScores: []
-                },
-            ]
-        })
-    }
 
   return (
     <>
-        <h1 className="text-3xl font-bold mb-5">
-            Welcome, Bowlers!
-        </h1>
-        <NewPlayerForm onSubmit={addPlayer} />
+        <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/game-mode" element={<GameMode />} />
+        </Routes>
     </>
   )
 }
