@@ -4,6 +4,13 @@ const initialState = {
     players: []
 };
 
+// Helper function to initialize frame scores
+const initializeFrameScores = () => {
+    const frameScores = new Array(10).fill({ firstAttempt: 0, secondAttempt: 0, total: 0, id: nanoid() });
+    frameScores[9].thirdAttempt = 0;
+    return frameScores;
+};
+
 export const playerSlice = createSlice({
     name: 'player',
     initialState,
@@ -12,7 +19,7 @@ export const playerSlice = createSlice({
             const player = {
                 id: nanoid(),
                 name: action.payload,
-                frameScores: []
+                frameScores: initializeFrameScores()
             }
             state.players.push(player);
         },
