@@ -1,4 +1,9 @@
+import {useSelector} from "react-redux";
+import {PlayerRow} from "./PlayerRow.jsx";
+
 export function Scores() {
+    const players = useSelector(state => state.players);
+
     const headers = [
         'Player Name',
         'Frame 1',
@@ -16,7 +21,7 @@ export function Scores() {
 
     return (
         <>
-            <h1 className="text-2xl font-bold mb-5 bg-cyan-500 rounded-t-lg">
+            <h1 className="text-2xl font-bold bg-cyan-500 rounded-t-lg">
                 Scores
             </h1>
             <table className="min-w-full">
@@ -30,13 +35,15 @@ export function Scores() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-
+                {players.map(player => (
+                    <tr key={player.id}>
+                       <PlayerRow player={player} />
+                    </tr>
+                ))}
                     {/*<td className="outline outline-pink-600">Row 1, Column 1</td>*/}
                     {/*<td className="outline outline-pink-600">Row 1, Column 2</td>*/}
                     {/*<td className="outline outline-pink-600">Row 1, Column 3</td>*/}
                     {/*<td className="outline outline-pink-600">Row 1, Column 4</td>*/}
-                </tr>
                 </tbody>
             </table>
 
