@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {removePlayer} from "../features/player/playerSlice.js";
 
 export function PlayersList() {
-    const players = useSelector(state => state.players);
+    const players = useSelector(state => state.player.players);
     const dispatch = useDispatch();
 
 

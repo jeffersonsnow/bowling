@@ -4,7 +4,7 @@ import {PlayersList} from "./PlayersList.jsx";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 export function Welcome() {
-    const players = useSelector(state => state.players);
+    const players = useSelector(state => state.player.players);
     const navigate = useNavigate(); // Initialize history
 
     const startGame = () => {

@@ -1,15 +1,17 @@
 import {nanoid} from "@reduxjs/toolkit";
-export function PlayerRow(player) {
+import {useSelector} from "react-redux";
+export function PlayerRow({player, rowIndex}) {
+    const currentPlayerIndex = useSelector(state => state.turn.currentPlayerIndex);
     const hideWhenZero = (score) => {
         return score ? '' : 'invisible';
     }
 
     return (
         <>
-            <td>
-                {player.player.name}
+            <td className={`${rowIndex === currentPlayerIndex ? 'bg-pink-500' : ''} outline outline-cyan-500`}>
+                {player.name} {rowIndex} {currentPlayerIndex}
             </td>
-            {player.player.frameScores.map((frame, index) => (
+            {player.frameScores.map((frame, index) => (
                 <td className="outline outline-cyan-500" key={nanoid()}>
                     <div className="flex flex-col">
                         <div className="flex flex-row gap-1">

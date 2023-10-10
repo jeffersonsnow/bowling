@@ -59,6 +59,100 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+@keyframes roll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+.bowling-ball.roll-animation {
+  animation: roll 2s linear forwards;
+}
+
+.bowling-ball {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #ffffff 0%, #000000 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.bowling-ball::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.small-circle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.small-circle:nth-child(1) {
+  top: 25px;
+  left: 75px;
+  background: black;
+}
+
+.small-circle:nth-child(2) {
+  top: 75px;
+  left: 25px;
+  background: black;
+}
+
+.small-circle:nth-child(3) {
+  top: 125px;
+  left: 75px;
+  background: black;
+}
+
+.bowling-pin {
+  width: 30px;
+  height: 150px;
+  margin-left: 10px; /* Add some margin to separate it from the ball */
+}
+
+.bowling-pin .top {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom: 10px solid red;
+}
+
+.bowling-pin .body {
+  width: 30px;
+  height: 150px;
+  background-color: #fff;
+  margin: 0 auto;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.roll-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

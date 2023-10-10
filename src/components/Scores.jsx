@@ -2,7 +2,7 @@ import {useSelector} from "react-redux";
 import {PlayerRow} from "./PlayerRow.jsx";
 
 export function Scores() {
-    const players = useSelector(state => state.players);
+    const players = useSelector(state => state.player.players);
 
     const headers = [
         'Player Name',
@@ -35,9 +35,9 @@ export function Scores() {
                 </tr>
                 </thead>
                 <tbody>
-                {players.map(player => (
+                {players.map((player, index) => (
                     <tr key={player.id}>
-                       <PlayerRow player={player} />
+                       <PlayerRow player={player} rowIndex={index}/>
                     </tr>
                 ))}
                     {/*<td className="outline outline-pink-600">Row 1, Column 1</td>*/}

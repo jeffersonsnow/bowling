@@ -1,8 +1,8 @@
 import {useSelector} from "react-redux";
 import {Scores} from './Scores.jsx';
+import {Roll} from './Roll.jsx';
 
 export function GameMode() {
-    const players = useSelector(state => state.players);
 
     return (
         <>
@@ -10,6 +10,7 @@ export function GameMode() {
                 Let's get ready to Bowl!
             </h1>
             <Scores />
+            <Roll />
         </>
     )
 }
