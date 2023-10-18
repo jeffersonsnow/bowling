@@ -3,6 +3,7 @@ import {PlayerRow} from "./PlayerRow.jsx";
 
 export function Scores() {
     const players = useSelector(state => state.player.players);
+    const currentFrame = useSelector(state => state.turn.currentFrame);
 
     const headers = [
         'Player Name',
@@ -28,7 +29,7 @@ export function Scores() {
                 <thead>
                 <tr>
                     {headers.map((header, index) => (
-                        <th className="outline outline-pink-600 p-2" key={index}>
+                        <th className={`outline outline-pink-600 p-2 ${(index - 1) === currentFrame ? 'bg-cyan-500' : ''}`} key={index}>
                             {header}
                         </th>
                     ))}
@@ -40,10 +41,6 @@ export function Scores() {
                        <PlayerRow player={player} rowIndex={index}/>
                     </tr>
                 ))}
-                    {/*<td className="outline outline-pink-600">Row 1, Column 1</td>*/}
-                    {/*<td className="outline outline-pink-600">Row 1, Column 2</td>*/}
-                    {/*<td className="outline outline-pink-600">Row 1, Column 3</td>*/}
-                    {/*<td className="outline outline-pink-600">Row 1, Column 4</td>*/}
                 </tbody>
             </table>
 

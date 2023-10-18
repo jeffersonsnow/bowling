@@ -27,7 +27,14 @@ export function Roll() {
 
     useEffect(() => {
         if (remainingRolls === 0) {
-            dispatch(nextPlayer(players.length - 1));
+            setTimeout(() => {
+                dispatch(nextPlayer(players));
+                // Set the remainingRolls back to the initial value (computedRolls)
+                setRemainingRolls(computedRolls);
+
+                // Reset the number of remaining pins to 10
+                setRemainingPins([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+            }, 2000);
         }
     }, [remainingRolls, dispatch]);
 
@@ -35,12 +42,13 @@ export function Roll() {
         const randomNumber = Math.floor(Math.random() * remainingPins.length);
         const pinsToRemove = remainingPins.slice(0, randomNumber + 1);
 
+        //handle strikes!
+
         setRemainingPins((prevPins) =>
             prevPins.filter((pin) => !pinsToRemove.includes(pin))
         );
 
         setRemainingRolls((prevRolls) => prevRolls - 1);
-        console.log('hey', remainingRolls)
     }
 
     const ballClass = isRolling ? "bowling-ball roll-animation" : "bowling-ball";

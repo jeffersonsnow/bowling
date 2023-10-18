@@ -13,16 +13,13 @@ export const turnSlice = createSlice({
     reducers: {
         nextPlayer: (state, action) => {
             // Increment the currentPlayerIndex and reset other turn-related values as needed
-            console.log('do I get called?', action)
-            state.currentPlayerIndex += 1;
-
-            // You might want to reset frame and roll counts as well
-            state.currentFrame = 0;
-            state.currentRoll = 1;
+            state.currentPlayerIndex++;
 
             // If you reach the end of the player list, loop back to the first player
-            if (state.currentPlayerIndex > action.payload) {
+            if (state.currentPlayerIndex > action.payload.length - 1) {
+                //where can I get the length of players array from another slice file?
                 state.currentPlayerIndex = 0;
+                state.currentFrame++;
             }
         },
         nextFrame: (state, action) => {
